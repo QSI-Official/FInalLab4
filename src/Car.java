@@ -1,6 +1,6 @@
 import java.awt.*;
 public abstract class Car extends Vehicle {
     public Car(int nrDoors, double enginePower, Color color, String modelName) {
-        super(nrDoors, enginePower, color, modelName);              // Call the constructor of the superclass (Vehicle) to initialize common attributes
+        super(nrDoors, enginePower, color, modelName);
     }
 }

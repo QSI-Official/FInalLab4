@@ -2,30 +2,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-/*
-* This class represents the Controller part in the MVC pattern.
-* It's responsibilities is to listen to the View and responds in a appropriate manner by
-* modifying the model state and the updating the view.
- */
-public class VehicleController {
-    // member fields:
+public class VehicleController implements IVehicleController{
 
-    // The delay (ms) corresponds to 20 updates a sec (hz)
-    //private final int delay = 50;
-    // The timer is started with an listener (see below) that executes the statements
-    // each step between delays.
-    //private Timer timer = new Timer(delay, new TimerListener());
-
-    // The frame that represents this instance View of the MVC pattern
-
-    // A list of vehicles, modify if needed
-    ArrayList<Vehicle> vehicles = new ArrayList<>();
-    /* Each step the TimerListener moves all the vehicles in the list and tells the
-    * view to update its images. Change this method to your needs.
-    * */
+    private final List<Vehicle> vehicles = new ArrayList<>();
 
     // spawns a random vehicle
-    public void addCar() {
+    public void addVehicle() {
         if (vehicles.size() < 10) {
             Random random = new Random();
             int randomNumber = random.nextInt();
@@ -39,7 +21,7 @@ public class VehicleController {
         }
     }
 
-    public void removeCar() {
+    public void removeVehicle() {
         if (!vehicles.isEmpty()) {
             vehicles.removeLast();
         }
@@ -50,19 +32,19 @@ public class VehicleController {
     }
 
     // Calls the gas method for each car once
-    void gas(int amount) {
+    public void gas(int amount) {
         double gas = ((double) amount) / 100;
         for (Vehicle vehicle : vehicles) {
             vehicle.gas(gas);
         }
     }
-    void brake(int amount){
+    public void brake(int amount){
         double brake = ((double) amount) / 100;
         for (Vehicle vehicle : vehicles){
             vehicle.brake((brake));
         }
     }
-    void turboOn(){
+    public void turboOn(){
         for (Vehicle vehicle: vehicles){
             if (vehicle instanceof Saab95) {
                 ((Saab95) vehicle).setTurboOn();
@@ -71,7 +53,7 @@ public class VehicleController {
         }
     }
 
-    void turboOff(){
+    public void turboOff(){
         for (Vehicle vehicle: vehicles){
             if (vehicle instanceof Saab95) {
                 ((Saab95) vehicle).setTurboOff();
@@ -79,27 +61,27 @@ public class VehicleController {
         }
     }
 
-    void scaniaLift(){
+    public void scaniaLift(){
         for(Vehicle vehicle: vehicles){
             if (vehicle instanceof Scania){
                 ((Scania) vehicle).raisePlatform(70);
             }
         }
     }
-    void scaniaLower(){
+    public void scaniaLower(){
         for(Vehicle vehicle: vehicles){
             if (vehicle instanceof Scania){
                 ((Scania) vehicle).lowerPlatform(70);
             }
         }
     }
-    void startCars(){
+    public void startCars(){
         for (Vehicle vehicle: vehicles){
             vehicle.startEngine();
         }
     }
 
-    void stopCars(){
+    public void stopCars(){
         for (Vehicle vehicle: vehicles){
             vehicle.stopEngine();
         }

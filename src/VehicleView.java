@@ -18,7 +18,7 @@ public class VehicleView extends JFrame{
     private static final int Y = 800;
 
     // The controller member
-    VehicleController vehC;
+    IVehicleController IvehC;
 
     DrawPanel drawPanel;
 
@@ -42,9 +42,9 @@ public class VehicleView extends JFrame{
     JButton stopButton = new JButton("Stop all cars");
 
     // Constructor
-    public VehicleView(String framename, VehicleController vehC){
-        this.drawPanel =  new DrawPanel(X, Y-240, vehC);          // lade till carController för att kunna använda i DrawPanel
-        this.vehC = vehC;
+    public VehicleView(String framename, IVehicleController IvehC){
+        this.drawPanel =  new DrawPanel(X, Y-240, IvehC);          // lade till carController för att kunna använda i DrawPanel
+        this.IvehC = IvehC;
         initComponents(framename);
     }
 
@@ -107,67 +107,67 @@ public class VehicleView extends JFrame{
         gasButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                vehC.gas(gasAmount);
+                IvehC.gas(gasAmount);
             }
         });
 
         brakeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                vehC.brake(gasAmount);
+                IvehC.brake(gasAmount);
             }
         });
 
         turboOnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                vehC.turboOn();
+                IvehC.turboOn();
                 //System.out.println("");
             }
         });
         turboOffButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                vehC.turboOff();
+                IvehC.turboOff();
             }
         });
 
         liftBedButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                vehC.scaniaLift();
+                IvehC.scaniaLift();
             }
         });
         lowerBedButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                vehC.scaniaLower();
+                IvehC.scaniaLower();
             }
         });
         addCarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                vehC.addCar();
+                IvehC.addVehicle();
             }
         });
         removeCarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                vehC.removeCar();
+                IvehC.removeVehicle();
             }
         });
 
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                vehC.startCars();
+                IvehC.startCars();
             }
         });
 
         stopButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                vehC.stopCars();
+                IvehC.stopCars();
             }
         });
         // Make the frame pack all it's components by respecting the sizes if possible.

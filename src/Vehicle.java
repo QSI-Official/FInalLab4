@@ -3,30 +3,57 @@ import java.awt.*;
 public abstract class Vehicle implements Movable {
     private final int nrDoors;
     private final double enginePower;
-    private double currentSpeed;
     private Color color;
     private final String modelName;
+
+    private double currentSpeed;
     private double xCord;
     private double yCord;
-    private Point point = new Point();    // tuple av två int
-    private direction currentDir = direction.S; // Variable
+    private final Point point;
+    private direction currentDir;
 
     public Vehicle(int nrDoors, double enginePower, Color color, String modelName) {
-        this.nrDoors = nrDoors;                           // Car Constructor. Special method used to initialize objects
-        this.enginePower = enginePower;                   // Called when an object of a class is created
+        this.nrDoors = nrDoors;
+        this.enginePower = enginePower;
         this.color = color;
         this.modelName = modelName;
+
+        point = new Point();
+        currentDir = direction.S;
     }
-    public enum direction {  //Special class, represents a group of constants
-        N, E, S, W
+
+    public enum direction {
+        N, E, S, W;
     }
+    public abstract double speedFactor();
+
+    public void startEngine() {
+        if (notMoving()) {
+            currentSpeed = 0.1;
+        }
+    }
+    public void stopEngine() {
+        currentSpeed = 0;
+    }
+
+    public void gas(double amount) {
+        if (amount <= 1 & amount >= 0)
+            incrementSpeed(amount);
+    }
+
+    public void brake(double amount) {
+        if (amount <= 1 & amount >= 0)
+            decrementSpeed(amount);
+    }
+
+    ////////////////////Getters and Setters///////////////
     public int getNrDoors() {
         return nrDoors;
     }
+
     public boolean notMoving(){
         return !(getCurrentSpeed() > 0.0);
     }
-
     public double getEnginePower() {
         return enginePower;
     }
@@ -45,10 +72,10 @@ public abstract class Vehicle implements Movable {
     public String getModelName() {
         return modelName;
     }
-
     public int getxPoint(){
         return point.x;
     }
+
     public int getyPoint(){
         return point.y;
     }
@@ -56,6 +83,7 @@ public abstract class Vehicle implements Movable {
     public void setxPoint(int x){
         point.x = x;
     }
+
     public void setyPoint(int y){
         point.y = y;
     }
@@ -65,10 +93,10 @@ public abstract class Vehicle implements Movable {
         return xCord;
     }
 
-
     public double getyCord() {
         return yCord;
     }
+
     public void setX(double newX) {
         xCord = newX;
     }
@@ -85,36 +113,15 @@ public abstract class Vehicle implements Movable {
         currentDir = newDirection;
     }
 
-    public void startEngine() {
-        if (notMoving()) {
-            currentSpeed = 0.1;
-        }
-    }
-
-    public void stopEngine() {
-        currentSpeed = 0;
-    }
-
     public void incrementSpeed(double amount) {
         currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount, enginePower);
-    } //If the getCurrentspeed exceeds enginepower the math.min will take the min which is the enginepower
+    }
 
     public void decrementSpeed(double amount) {
         currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount, 0);
-    } //If the getCurrentspeed is below 0 the math.max will choose 0
-
-
-    public abstract double speedFactor();
-
-    public void gas(double amount) { // Om amount är mindre eller lika med 1 OCH amount är större eller lika med 0
-        if (amount <= 1 & amount >= 0)
-            incrementSpeed(amount);
     }
 
-    public void brake(double amount) { // Om amount är mindre eller lika med 1 OCH amount är större eller lika med 0
-        if (amount <= 1 & amount >= 0)
-            decrementSpeed(amount);
-    }
+    //////////////Move methods//////////////
 
     @Override
     public void move() {
@@ -159,5 +166,22 @@ public abstract class Vehicle implements Movable {
                 currentDir = direction.N;
                 break;
         }
+    }
+
+    public void boundariesCheck(Vehicle vehicle) {
+        if (vehicle.getyCord() > 500) {
+            vehicle180(vehicle);
+            vehicle.setY(500);
+        } else if (vehicle.getyCord() < 0) {
+            vehicle180(vehicle);
+            vehicle.setY(0);
+        }
+    }
+
+    public void vehicle180(Vehicle vehicle){
+        vehicle.stopEngine();
+        vehicle.turnRight();
+        vehicle.turnRight();
+        vehicle.startEngine();
     }
 }
