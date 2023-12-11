@@ -1,7 +1,6 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class DrawPanel extends JPanel{
@@ -18,15 +17,6 @@ public class DrawPanel extends JPanel{
         this.setBackground(Color.green);
         this.IvehC = IvehC;
 
-        try {
-            volvoImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Volvo240.jpg"));
-            saabImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Saab95.jpg"));
-            scaniaImage=ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Scania.jpg"));
-        } catch (IOException ex)
-        {
-            ex.printStackTrace();
-        }
-
     }
 
     @Override
@@ -34,12 +24,19 @@ public class DrawPanel extends JPanel{
         super.paintComponent(g);
         int extra = 0;
         for (Vehicle vehicle : IvehC.getVehicles()) {
-            if(vehicle.getModelName() == "Volvo240"){
-                g.drawImage(volvoImage, vehicle.getxPoint() + extra,  vehicle.getyPoint(), null);
-            }else if (vehicle.getModelName() == "Saab95"){
-                g.drawImage(saabImage, vehicle.getxPoint() + extra,   vehicle.getyPoint(), null);
-            }else if (vehicle.getModelName() == "Scania"){
-                g.drawImage(scaniaImage, vehicle.getxPoint() + extra, vehicle.getyPoint(), null);
+            try {
+                if (vehicle.getModelName() == "Volvo240") {
+                    volvoDrawPanel volvo = new volvoDrawPanel();
+                    g.drawImage(volvo.readVehicleImage(), vehicle.getxPoint() + extra, vehicle.getyPoint(), null);
+                } else if (vehicle.getModelName() == "Saab95") {
+                    SaabDrawPanel saab = new SaabDrawPanel();
+                    g.drawImage(saab.readVehicleImage(), vehicle.getxPoint() + extra, vehicle.getyPoint(), null);
+                } else if (vehicle.getModelName() == "Scania") {
+                    scaniaDrawPanel scania = new scaniaDrawPanel();
+                    g.drawImage(scania.readVehicleImage(), vehicle.getxPoint() + extra, vehicle.getyPoint(), null);
+                }
+            }catch (IOException ex){
+                ex.printStackTrace();
             }
             extra += 100;
         }
