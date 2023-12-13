@@ -15,8 +15,8 @@ public class TimeListener implements ActionListener {
             int x = (int) Math.round(vehicle.getxCord());
             int y = (int) Math.round(vehicle.getyCord());
             frame.drawPanel.moveit(x, y, vehicle);
-            frame.drawPanel.repaint();
         }
+        frame.drawPanel.repaint();
     }
 }
 

@@ -6,8 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class VehicleView extends JFrame{
-    private static final int X = 1000;
-    private static final int Y = 800;
+    private static int X = 0;
+    private static int Y = 0;
 
     DrawPanel drawPanel;
 
@@ -31,8 +31,10 @@ public class VehicleView extends JFrame{
     JButton stopButton = new JButton("Stop all cars");
 
     // Constructor
-    public VehicleView(String framename, DrawPanel drawPanel){
-        this.drawPanel = drawPanel;          // lade till carController för att kunna använda i DrawPanel
+    public VehicleView(String framename, DrawPanel drawPanel, int X, int Y){
+        this.drawPanel = drawPanel;
+        this.X=X;
+        this.Y=Y;
         initComponents(framename);
     }
 

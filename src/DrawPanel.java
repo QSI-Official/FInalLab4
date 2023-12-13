@@ -7,7 +7,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class DrawPanel extends JPanel {
-    List<Vehicle> vehicle;
+    List<Vehicle> vehicleList;
 
     void moveit(int x, int y, Vehicle vehicle) {
         vehicle.setxPoint(x);
@@ -20,20 +20,20 @@ public class DrawPanel extends JPanel {
         this.setBackground(Color.green);
     }
 
-    public void getCars(List<Vehicle> vehicle) {
-        this.vehicle = vehicle;
+    public void setVehicleList(List<Vehicle> vehicleList) {
+        this.vehicleList = vehicleList;
     }
 
-    public BufferedImage readVehicleImage(Vehicle vehicle1) throws IOException {
-        return ImageIO.read(DrawPanel.class.getResourceAsStream("pics/" + vehicle1.getModelName() + ".jpg"));
+    public BufferedImage readVehicleImage(Vehicle vehicle) throws IOException {
+        return ImageIO.read(DrawPanel.class.getResourceAsStream("pics/" + vehicle.getModelName() + ".jpg"));
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        for (Vehicle vehicle1 : vehicle) {
+        for (Vehicle vehicle : vehicleList) {
             try {
-                g.drawImage(readVehicleImage(vehicle1), vehicle1.getxPoint(), vehicle1.getyPoint(), null);
+                g.drawImage(readVehicleImage(vehicle), vehicle.getxPoint(), vehicle.getyPoint(), null);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
