@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 public class VehicleTest {
     @Test
     public void testMoveSaab() {
-        Vehicle Saab = new Saab95();
+        Vehicle Saab = new Saab95(0, 0);
         Saab.startEngine();
         Saab.move();
         assertEquals(0, Saab.getxCord());
@@ -24,39 +24,39 @@ public class VehicleTest {
     }
     @Test
     void nr_doorsSaab() {
-        Saab95 saab = new Saab95();
+        Saab95 saab = new Saab95(0, 0);
         assertEquals(2, saab.getNrDoors());
     }
 
     @Test
     public void testTurnRightSaab() {
-        Car Saab = new Saab95();
+        Car Saab = new Saab95(0, 0);
         Saab.turnRight();
         assertEquals(Car.direction.E, Saab.getCurrentDir());
     }
     @Test
     public void testTurnRightVolvo() {
-        Car Volvo240 = new Volvo240();
+        Car Volvo240 = new Volvo240(0, 0);
         Volvo240.turnRight();
         assertEquals(Car.direction.E, Volvo240.getCurrentDir());
     }
 
     @Test
     public void testTurnLeftSaab() {
-        Car Saab = new Saab95();
+        Car Saab = new Saab95(0, 0);
         Saab.turnLeft();
         assertEquals(Car.direction.W, Saab.getCurrentDir());
     }
     @Test
     public void testTurnLeftVolvo() {
-        Vehicle Volvo240 = new Volvo240();
+        Vehicle Volvo240 = new Volvo240(0, 0);
         Volvo240.turnLeft();
         assertEquals(Vehicle.direction.W, Volvo240.getCurrentDir());
     }
 
     @Test
     public void testTurningSaab() {
-        Car Saab = new Saab95();
+        Car Saab = new Saab95(0, 0);
         Saab.turnRight();
         Saab.turnRight();
         Saab.turnRight();
@@ -65,7 +65,7 @@ public class VehicleTest {
     }
     @Test
     public void testTurningVolvo() {
-        Car Volvo240 = new Volvo240();
+        Car Volvo240 = new Volvo240(0, 0);
         Volvo240.turnRight();
         Volvo240.turnRight();
         Volvo240.turnRight();
@@ -74,7 +74,7 @@ public class VehicleTest {
     }
     @Test
     public void testTurningS() {
-        Car Saab = new Saab95();
+        Car Saab = new Saab95(0, 0);
         Saab.turnRight();
         Saab.turnLeft();
         Saab.turnRight();
@@ -83,7 +83,7 @@ public class VehicleTest {
     }
     @Test
     public void testTurningW() {
-        Car Saab = new Saab95();
+        Car Saab = new Saab95(0, 0);
         Saab.turnLeft();
         Saab.turnLeft();
         Saab.turnLeft();
@@ -93,7 +93,7 @@ public class VehicleTest {
     }
     @Test
     public void testTurning() {
-        Car Saab = new Saab95();
+        Car Saab = new Saab95(0, 0);
         Saab.turnLeft();
         Saab.turnLeft();
         Saab.turnLeft();
@@ -102,7 +102,7 @@ public class VehicleTest {
 
     @Test
     public void testingMoveAndTurnVolvo() {
-        Car Volvo = new Volvo240();
+        Car Volvo = new Volvo240(0, 0);
         Volvo.startEngine();
         Volvo.turnRight();
         Volvo.turnRight();
@@ -112,7 +112,7 @@ public class VehicleTest {
     }
     @Test
     public void testIncrementSpeedSaab() {
-        Car Saab = new Saab95();
+        Car Saab = new Saab95(0, 0);
         Saab.startEngine();
         Saab.gas(0.4);
         Saab.incrementSpeed(1);
@@ -121,7 +121,7 @@ public class VehicleTest {
     }
     @Test
     public void testIncrementSpeedVolvo() {
-        Car Volvo = new Volvo240();
+        Car Volvo = new Volvo240(0, 0);
         Volvo.startEngine();
         Volvo.gas(0.4);
         Volvo.move();
@@ -129,7 +129,7 @@ public class VehicleTest {
     }
     @Test
     public void testDecrementSpeedSaab(){
-        Car Saab = new Saab95();
+        Car Saab = new Saab95(0, 0);
         Saab.startEngine();
         Saab.gas(0.4);
         Saab.move();
@@ -139,7 +139,7 @@ public class VehicleTest {
     }
     @Test
     public void testDecrementSpeedVolvo(){
-        Car Volvo = new Volvo240();
+        Car Volvo = new Volvo240(0, 0);
         Volvo.startEngine();
         Volvo.gas(0.4);
         Volvo.move();
@@ -149,62 +149,62 @@ public class VehicleTest {
     }
     @Test
     public void ColorSaab(){
-        Car Saab = new Saab95();
+        Car Saab = new Saab95(0, 0);
         assertEquals(Color.red, Saab.getColor());
     }
     @Test
     public void ColorVolvo(){
-        Car Volvo = new Volvo240();
+        Car Volvo = new Volvo240(0, 0);
         assertEquals(Color.black, Volvo.getColor());
     }
     @Test
     public void SetColorVolvo(){
-        Car Volvo = new Volvo240();
+        Car Volvo = new Volvo240(0, 0);
         Volvo.setColor(Color.BLUE);
         assertEquals(Color.BLUE, Volvo.getColor());
     }
     @Test
     public void GetModelNameSaab(){
-        Car Saab = new Saab95();
+        Car Saab = new Saab95(0, 0);
         assertEquals("Saab95", Saab.getModelName());
     }
     @Test
     public void GetModelNameVolvo(){
-        Car Volvo = new Volvo240();
+        Car Volvo = new Volvo240(0, 0);
         assertEquals("Volvo240", Volvo.getModelName());
     }
     @Test
     public void GetCurrentSpeed(){
-        Car Saab = new Saab95();
+        Car Saab = new Saab95(0, 0);
         Saab.startEngine();
         Saab.gas(0.4);
         assertEquals(0.6, Saab.getCurrentSpeed());
     }
     @Test
     public void GetEnginePowerSaab(){
-        Car Saab = new Saab95();
+        Car Saab = new Saab95(0, 0);
         assertEquals(125, Saab.getEnginePower());
     }
     @Test
     public void GetEnginePowerVolvo(){
-        Car Volvo = new Volvo240();
+        Car Volvo = new Volvo240(0, 0);
         assertEquals(100, Volvo.getEnginePower());
     }
     @Test
     public void StopEngineSaab(){
-        Car Saab = new Saab95();
+        Car Saab = new Saab95(0, 0);
         Saab.stopEngine();
         assertEquals(0, Saab.getCurrentSpeed());
     }
     @Test
     public void StopEngineVolvo(){
-        Car Volvo = new Volvo240();
+        Car Volvo = new Volvo240(0, 0);
         Volvo.stopEngine();
         assertEquals(0, Volvo.getCurrentSpeed());
     }
     @Test
     public void GasingMultipleTimes(){
-        Car Volvo = new Volvo240();
+        Car Volvo = new Volvo240(0, 0);
         Volvo.startEngine();
         for(int i = 0; i < 150; i++){
             Volvo.gas(1);

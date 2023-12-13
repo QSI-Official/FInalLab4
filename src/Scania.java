@@ -2,7 +2,7 @@ import java.awt.*;
 
 public class Scania extends Truck{
 
-    public Scania(){
-        super(2,50,Color.blue,"Scania");
+    public Scania(double initX, double initY){
+        super(2,50,Color.blue,"Scania", initX, initY);
     }
 }

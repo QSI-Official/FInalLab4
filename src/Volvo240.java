@@ -2,8 +2,8 @@ import java.awt.*;
 
 public class Volvo240 extends Car {
 
-    public Volvo240(){ //Constructor
-        super(4, 100, Color.black, "Volvo240");
+    public Volvo240(double initX, double initY){ //Constructor
+        super(4, 100, Color.black, "Volvo240", initX, initY);
         stopEngine();
     }
     

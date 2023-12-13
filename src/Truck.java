@@ -3,8 +3,8 @@ import java.awt.*;
 public class Truck extends Vehicle {
     private double angle;
 
-    public Truck(int nrDoors, double enginePower, Color color, String modelName) {
-        super(nrDoors, enginePower, color, modelName);
+    public Truck(int nrDoors, double enginePower, Color color, String modelName, double initX, double initY) {
+        super(nrDoors, enginePower, color, modelName, initX, initY);
     }
     public void raisePlatform (double amount){
         if (notMoving() & amount > 0){

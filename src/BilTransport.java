@@ -8,8 +8,8 @@ public class BilTransport extends Truck{
     private static final int platformFullRaiseAndLowerAngle = 70;
 
     //Constructor
-    public BilTransport(){
-        super(2, 50, Color.white, "Mercedes");
+    public BilTransport(double initX, double initY){
+        super(2, 50, Color.white, "Mercedes", initX, initY);
     }
 
     public double calculateDistance(double x1, double y1, double x2, double y2){

@@ -1,13 +1,12 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import java.util.List;
-import java.awt.*;
+
 public class VerkstadTest {
     @Test
     public void testAddCarIfAllowed() {
         Verkstad<Volvo240> Volvo240Verkstad = new Verkstad<>(3);
-        Volvo240 volvoCar = new Volvo240();
-        Saab95 saabCar = new Saab95();
+        Volvo240 volvoCar = new Volvo240(0, 0);
+        Saab95 saabCar = new Saab95(0, 0);
         Volvo240Verkstad.addCarIfAllowed(volvoCar);
         assertTrue(Volvo240Verkstad.getCarList().contains(volvoCar));
         // Try to add a disallowed car, which should print an error message
@@ -18,10 +17,10 @@ public class VerkstadTest {
     @Test
     public void testAddCarIfAllowedAndCheckOut() {
         Verkstad<Saab95> Saab95Verkstad = new Verkstad<>(2);
-        Saab95 saabCar0 = new Saab95();
-        Volvo240 volvoCar = new Volvo240();  // Assuming Volvo240 is not allowed
-        Saab95 saabCar1 = new Saab95();     // Assuming Saab95 is allowed
-        Saab95 saabCar2 = new Saab95();
+        Saab95 saabCar0 = new Saab95(0, 0);
+        Volvo240 volvoCar = new Volvo240(0, 0);  // Assuming Volvo240 is not allowed
+        Saab95 saabCar1 = new Saab95(0, 0);     // Assuming Saab95 is allowed
+        Saab95 saabCar2 = new Saab95(0, 0);
         //Saab95Verkstad.addCarIfAllowed(volvoCar);
         Saab95Verkstad.addCarIfAllowed(saabCar1);
         Saab95Verkstad.addCarIfAllowed(saabCar0);

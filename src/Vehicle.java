@@ -12,7 +12,7 @@ public abstract class Vehicle implements Movable {
     private final Point point;
     private direction currentDir;
 
-    public Vehicle(int nrDoors, double enginePower, Color color, String modelName) {
+    public Vehicle(int nrDoors, double enginePower, Color color, String modelName, double initX, double initY) {
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         this.color = color;
@@ -20,6 +20,9 @@ public abstract class Vehicle implements Movable {
 
         point = new Point();
         currentDir = direction.S;
+
+        setX(initX);
+        setY(initY);
     }
 
     public enum direction {

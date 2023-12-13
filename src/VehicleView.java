@@ -9,9 +9,6 @@ public class VehicleView extends JFrame{
     private static final int X = 1000;
     private static final int Y = 800;
 
-    // The controller member
-    IVehicleController IvehC;
-
     DrawPanel drawPanel;
 
     JPanel controlPanel = new JPanel();
@@ -34,9 +31,8 @@ public class VehicleView extends JFrame{
     JButton stopButton = new JButton("Stop all cars");
 
     // Constructor
-    public VehicleView(String framename, IVehicleController IvehC){
-        this.drawPanel =  new DrawPanel(X, Y-240, IvehC);          // lade till carController för att kunna använda i DrawPanel
-        this.IvehC = IvehC;
+    public VehicleView(String framename, DrawPanel drawPanel){
+        this.drawPanel = drawPanel;          // lade till carController för att kunna använda i DrawPanel
         initComponents(framename);
     }
 
@@ -92,71 +88,6 @@ public class VehicleView extends JFrame{
         stopButton.setPreferredSize(new Dimension(X/5-5,200));
         this.add(stopButton);
 
-        gasButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                IvehC.gas(gasAmount);
-            }
-        });
-
-        brakeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                IvehC.brake(gasAmount);
-            }
-        });
-
-        turboOnButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                IvehC.turboOn();
-            }
-        });
-        turboOffButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                IvehC.turboOff();
-            }
-        });
-
-        liftBedButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                IvehC.scaniaLift();
-            }
-        });
-        lowerBedButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                IvehC.scaniaLower();
-            }
-        });
-        addCarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                IvehC.addVehicle();
-            }
-        });
-        removeCarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                IvehC.removeVehicle();
-            }
-        });
-
-        startButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                IvehC.startCars();
-            }
-        });
-
-        stopButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                IvehC.stopCars();
-            }
-        });
         // Make the frame pack all it's components by respecting the sizes if possible.
         this.pack();
 
@@ -168,5 +99,48 @@ public class VehicleView extends JFrame{
         this.setVisible(true);
         // Make sure the frame exits when "x" is pressed
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    public void addGasListener(ActionListener actionListener){
+        gasButton.addActionListener(actionListener);
+    }
+
+    public void addBrakeListener(ActionListener actionListener){
+        brakeButton.addActionListener(actionListener);
+    }
+
+    public void addTurboOnListener(ActionListener actionListener){
+        turboOnButton.addActionListener(actionListener);
+    }
+
+    public void addTurboOffListener(ActionListener actionListener){
+        turboOffButton.addActionListener(actionListener);
+    }
+
+    public void addLiftListener(ActionListener actionListener){
+        liftBedButton.addActionListener(actionListener);
+    }
+
+    public void addLowerListener(ActionListener actionListener){
+        lowerBedButton.addActionListener(actionListener);
+    }
+
+    public void addCarListener(ActionListener actionListener){
+        addCarButton.addActionListener(actionListener);
+    }
+    public void addRemoveCarListener(ActionListener actionListener){
+        removeCarButton.addActionListener(actionListener);
+    }
+
+    public void addStartCarListener(ActionListener actionListener){
+        startButton.addActionListener(actionListener);
+    }
+
+    public void addStopCarListener(ActionListener actionListener){
+        stopButton.addActionListener(actionListener);
+    }
+
+    public int getGasAmount(){
+        return gasAmount;
     }
 }
